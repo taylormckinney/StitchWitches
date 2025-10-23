@@ -1,10 +1,21 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Stitch Witches";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome! We are Stitch Witches!</h1>
+    <p>We create a variety of crocheted items, including stuffed animals, key chains and car charms, cardigans, and much more-- all hand made with love!</p>
+    
 </div>
+<div class="carousel">
+    <div class="carousel-items">
+        <img src="~/images/133857506242773164.jpg" />
+        <img src="~/images/133862598114189004.jpg" />
+    </div>
+
+        <button type="button" class="prev" onclick="changeSlide(-1)">❮</button>
+        <button type="button" class="next" onclick="changeSlide(1)">❯</button>
+</div>
+

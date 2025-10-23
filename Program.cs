@@ -13,7 +13,12 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
-builder.Services.AddRazorPages();
+builder.Services.AddRazorPages(options =>
+{
+    options.Conventions.AuthorizePage("/InventoryItems/Create");
+    options.Conventions.AuthorizePage("/InventoryItems/Edit");
+    options.Conventions.AuthorizePage("/InventoryItems/Delete");
+});
 builder.Services.AddDbContext<StitchWitchesContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("StitchWitchesContext") ?? throw new InvalidOperationException("Connection string 'StitchWitchesContext' not found.")));
 

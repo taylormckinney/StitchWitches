@@ -41,41 +41,6 @@ namespace StitchWitches.Pages.InventoryItems
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more information, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync()
-        {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-
-            _context.Attach(InventoryItem).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!InventoryItemExists(InventoryItem.Id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return RedirectToPage("./Index");
-        }
-
-        private bool InventoryItemExists(int id)
-        {
-            return _context.InventoryItem.Any(e => e.Id == id);
-        }
-
         
        
         [BindProperty]
@@ -87,7 +52,7 @@ namespace StitchWitches.Pages.InventoryItems
             {
                 await ImgUpload.CopyToAsync(fileStream);
             }
-            InventoryItem.ImagePath = file;
+            InventoryItem.ImagePath = file;//ImgUpload.FileName;
             await _context.SaveChangesAsync();
 
             return Page();

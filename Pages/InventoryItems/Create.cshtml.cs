@@ -13,10 +13,12 @@ namespace StitchWitches.Pages.InventoryItems
     public class CreateModel : PageModel
     {
         private readonly StitchWitches.Data.StitchWitchesContext _context;
+        private readonly IWebHostEnvironment _environment;
 
-        public CreateModel(StitchWitches.Data.StitchWitchesContext context)
+        public CreateModel(StitchWitches.Data.StitchWitchesContext context, IWebHostEnvironment environment)
         {
             _context = context;
+            _environment = environment;
         }
 
         public IActionResult OnGet()
@@ -27,6 +29,9 @@ namespace StitchWitches.Pages.InventoryItems
         [BindProperty]
         public InventoryItem InventoryItem { get; set; } = default!;
 
+        [BindProperty]
+        public IFormFile ImgUpload { get; set; }
+
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
@@ -34,11 +39,21 @@ namespace StitchWitches.Pages.InventoryItems
             {
                 return Page();
             }
+            if (ImgUpload is not null)
+            {
+                var file = Path.Combine(_environment.WebRootPath, "images", ImgUpload.FileName);
+                using (var fileStream = new FileStream(file, FileMode.Create))
+                {
+                    await ImgUpload.CopyToAsync(fileStream);
+                }
+                InventoryItem.ImagePath = ImgUpload.FileName;
+            }
 
             _context.InventoryItem.Add(InventoryItem);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }
+ 
     }
 }

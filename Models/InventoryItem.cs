@@ -15,8 +15,7 @@ namespace StitchWitches.Models
         
         [BindProperty]
         public MakerEnum CreatedBy { get; set; }
-        [BindProperty]
-        public String? ImagePath { get; set; }
+        public string? ImagePath { get; set; }
 
     }
 

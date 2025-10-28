@@ -4,9 +4,12 @@
 @{
     ViewData["Title"] = "Details";
 }
+@{
+    var fileName = @Model.InventoryItem.ImagePath;
+}
 
 <h1>Details</h1>
-
+<img src="~/images/@fileName" >
 <div>
     <h4>InventoryItem</h4>
     <hr />

@@ -14,7 +14,7 @@
     <hr />
     <div class="row">
     <div class="col-md-4">
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="InventoryItem.Name" class="control-label"></label>
@@ -37,9 +37,18 @@
                 <span asp-validation-for="InventoryItem.Price" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="InventoryItem.Color" class="control-label"></label>
+                <input asp-for="InventoryItem.Color" class="form-control" />
+                <span asp-validation-for="InventoryItem.Color" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="InventoryItem.CreatedBy" class="control-label"></label>
                 <select asp-for="InventoryItem.CreatedBy" asp-items="Html.GetEnumSelectList<MakerEnum>()" class="form-control"></select>
                 <span asp-validation-for="InventoryItem.CreatedBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImgUpload"></label>
+                <input asp-for="ImgUpload" type="file" />
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

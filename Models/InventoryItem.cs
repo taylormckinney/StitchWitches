@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations;    
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 namespace StitchWitches.Models
 {
    
@@ -14,5 +15,10 @@ namespace StitchWitches.Models
         
         [BindProperty]
         public MakerEnum CreatedBy { get; set; }
+        [BindProperty]
+        public String? ImagePath { get; set; }
+
     }
+
+  
 }

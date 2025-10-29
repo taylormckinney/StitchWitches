@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -30,7 +31,8 @@ namespace StitchWitches.Pages.InventoryItems
         public InventoryItem InventoryItem { get; set; } = default!;
 
         [BindProperty]
-        public IFormFile ImgUpload { get; set; }
+        [Display(Name = "Upload Image")]
+        public IFormFile? ImgUpload { get; set; }
 
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()

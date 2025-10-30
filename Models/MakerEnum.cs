@@ -4,11 +4,11 @@ namespace StitchWitches.Models
 {
     public enum MakerEnum
     {
-        [Display(Name = "Taylor")]
+        [Display(Name = "Made by Taylor")]
         Taylor,
-        [Display(Name = "Megan")]
+        [Display(Name = "Made by Megan")]
         Megan,
-        [Display(Name = "Landis")]
+        [Display(Name = "Made by Landis")]
         Landis
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.IO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -52,6 +53,14 @@ namespace StitchWitches.Pages.InventoryItems
             if (inventoryitem != null)
             {
                 InventoryItem = inventoryitem;
+                if(InventoryItem.ImagePath is not null) //also delete image file when deleting item
+                {
+                    var imagePath = Path.Combine("wwwroot/images", InventoryItem.ImagePath);
+                    if (System.IO.File.Exists(imagePath))
+                    {
+                        System.IO.File.Delete(imagePath);
+                    }
+                }
                 _context.InventoryItem.Remove(InventoryItem);
                 await _context.SaveChangesAsync();
             }

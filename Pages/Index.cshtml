@@ -3,16 +3,18 @@
 @{
     ViewData["Title"] = "Stitch Witches";
 }
+@using StitchWitches.Models;
 
 <div class="text-center">
     <h1 class="display-4">Welcome! We are Stitch Witches!</h1>
     <p>We create a variety of crocheted items, including stuffed animals, key chains and car charms, cardigans, and much more-- all hand made with love!</p>
-    
+
 </div>
 <div class="carousel">
     <div class="carousel-items">
-        <img src="~/images/133857506242773164.jpg" />
-        <img src="~/images/133862598114189004.jpg" />
+        @foreach (var item in Model.Items) {
+            <img src="~/images/@item.ImagePath" />
+        }
     </div>
 
         <button type="button" class="prev" onclick="changeSlide(-1)">❮</button>

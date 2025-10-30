@@ -31,17 +31,18 @@ body {
 }
 
 .carousel {
-    position: relative;
-    max-width: 1600px; /* Adjust as needed */
+    
+    max-width: 600px; /* Adjust as needed */
     margin: auto;
     overflow: hidden;
     padding: 5px;
-    margin-bottom: 100px;
 }
 
 .carousel-items {
     display: flex;
     transition: transform 0.5s ease;
+    max-height: 400px;
+    max-width: 400px;
 }
 
 .carousel button {

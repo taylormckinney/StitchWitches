@@ -18,6 +18,7 @@ namespace StitchWitches.Pages.InventoryItems
         private readonly StitchWitches.Data.StitchWitchesContext _context;
         private readonly IWebHostEnvironment _environment;
 
+
         public EditModel(StitchWitches.Data.StitchWitchesContext context, IWebHostEnvironment environment)
         {
             _context = context;
@@ -31,6 +32,8 @@ namespace StitchWitches.Pages.InventoryItems
         [Display(Name = "Upload Image")]
         public IFormFile? ImgUpload { get; set; }
 
+        public string? ExistingPath; //used to avoid overwriting image path if no new image is uploaded
+
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -38,7 +41,7 @@ namespace StitchWitches.Pages.InventoryItems
                 return NotFound();
             }
 
-            var inventoryitem =  await _context.InventoryItem.FirstOrDefaultAsync(m => m.Id == id);
+            var inventoryitem = await _context.InventoryItem.FirstOrDefaultAsync(m => m.Id == id);
             if (inventoryitem == null)
             {
                 return NotFound();
@@ -57,7 +60,7 @@ namespace StitchWitches.Pages.InventoryItems
             }
 
             _context.Attach(InventoryItem).State = EntityState.Modified;
-            if (ImgUpload is not null)
+            if (ImgUpload != null && ImgUpload.Length >0)
             {
                 var file = Path.Combine(_environment.WebRootPath, "images", ImgUpload.FileName);
                 using (var fileStream = new FileStream(file, FileMode.Create))
@@ -65,6 +68,10 @@ namespace StitchWitches.Pages.InventoryItems
                     await ImgUpload.CopyToAsync(fileStream);
                 }
                 InventoryItem.ImagePath = ImgUpload.FileName;
+            }
+            else //if image is not included on edit of item, retain existing image path
+            {
+                InventoryItem.ImagePath = HttpContext.Request.Form["ExistingPath"];
             }
 
             try
@@ -85,6 +92,7 @@ namespace StitchWitches.Pages.InventoryItems
 
             return RedirectToPage("./Index");
         }
+
 
         private bool InventoryItemExists(int id)
         {

@@ -10,14 +10,22 @@
     <p>We create a variety of crocheted items, including stuffed animals, key chains and car charms, cardigans, and much more-- all hand made with love!</p>
 
 </div>
-<div class="carousel">
-    <div class="carousel-items">
+<h3 class="text-center">Check out what we've been working on lately!</h3>
+<div class="scrollContainer">
         @foreach (var item in Model.Items) {
             <img src="~/images/@item.ImagePath" />
         }
-    </div>
+   <div>
+       <h4>Want to see more?</h4>
+       <p>Check out our full gallery of projects below!</p>
+        <a class="btn btn-primary" asp-page="/InventoryItems/Index">See More</a>
+   </div>
+</div>
 
-        <button type="button" class="prev" onclick="changeSlide(-1)">❮</button>
-        <button type="button" class="next" onclick="changeSlide(1)">❯</button>
+<div class="left">
+    <p>Upcoming Markets</p>
+</div>
+<div class="right">
+    <p>Contact Us</p>
 </div>
 

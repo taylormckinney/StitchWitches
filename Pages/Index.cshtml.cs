@@ -22,5 +22,6 @@ public class IndexModel : PageModel
     public async Task OnGetAsync()
     {
         Items = await _context.InventoryItem.ToListAsync();
+        Items = Items.TakeLast(5).ToList(); //Show 5 most recently added items
     }
 }

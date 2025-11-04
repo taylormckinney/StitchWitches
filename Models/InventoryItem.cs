@@ -13,7 +13,7 @@ namespace StitchWitches.Models
         public int Quantity { get; set; }
         [DataType(DataType.Currency)]
         public decimal Price { get; set; }
-        
+        [Display(Name="Crocheter")]
         public MakerEnum CreatedBy { get; set; }
         public CategoryEnum Category { get; set; }
         public string? ImagePath { get; set; }

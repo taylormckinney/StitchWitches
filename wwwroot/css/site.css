@@ -9,7 +9,7 @@ html {
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #29470c;
 }
 
 html {
@@ -29,6 +29,12 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
     text-align: start;
 }
+
+a {
+    color: #2d6732;
+}
+
+
 /*
 .carousel {
     
@@ -90,8 +96,7 @@ body {
         padding: 10px;
         white-space: normal;
         text-align: center;
-        background-color: #000;
-        color: #fff;
+        background-color: #bfc1bf;
         flex: none;
     }
 

@@ -9,17 +9,12 @@
 }
 
 <h1>Details</h1>
-<img src="~/images/@fileName" >
-<div>
-    <h4>InventoryItem</h4>
-    <hr />
+<img src="~/images/@fileName" class="img-reactive pull-right" width="33%" >
+<div class="pull-left">
+    <h4>@Html.DisplayFor(model => model.InventoryItem.Name)</h4>
+   
     <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.InventoryItem.Name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.InventoryItem.Name)
-        </dd>
+        
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.InventoryItem.Description)
         </dt>

@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using StitchWitches.Data;
 using StitchWitches.Models;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace StitchWitches.Pages.InventoryItems
 {
@@ -25,5 +27,6 @@ namespace StitchWitches.Pages.InventoryItems
         {
             InventoryItem = await _context.InventoryItem.ToListAsync();
         }
+
     }
 }

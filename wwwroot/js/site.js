@@ -4,31 +4,33 @@
 // Write your JavaScript code.
 
 /**
- * CAROUSEL OF IMAGES FUNCTIONALITY:
+ * Filtering on InventoryItem/Index page
  */
-let currentIndex = 0; // Track the current slide index
-const items = document.querySelectorAll('.carousel-items img'); // Select all images in the carousel
-const totalItems = items.length; // Get the total number of images
 
-// Function to change the slide
-function changeSlide(direction) {
-    // Hide the current image
-    items[currentIndex].style.display = 'none';
+function filterItems(category) {
 
-    // Update the current index based on the direction
-    currentIndex = (currentIndex + direction + totalItems) % totalItems;
+    //filtering items based on category:
+    var items = document.getElementsByClassName("indexItem");
+    for (var item of items){
+        if (item.classList.contains(category) || category == "All") {
+            item.style.display = "block";
+        }
+        else {
+            item.style.display = "none";
+        }
+    }
+    /*
+    //menu button styling on click: 
+    var btns = document.getElementsByClassName("filterButton");
+    Array.from(btns).foreach((btn) => {
+        if (btn.id == category) {
+            btn.classList.add('selected');
+        }
+        else {
+            btn.classList.remove('selected');
+        }
+    }); */
 
-    // Show the new current image
-    items[currentIndex].style.display = 'block';
-}
+} //ends func
 
-// Initialize the carousel by displaying the first image
-function initializeCarousel() {
-    items.forEach((itm, index) => {
-        itm.style.display = index === currentIndex ? 'block' : 'none'; // Show only the current image
-    });
-}
-
-// Start the carousel
-initializeCarousel();
 

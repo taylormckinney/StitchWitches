@@ -24,11 +24,9 @@
     }
 }
 
-<h1>Index</h1>
+<h1>Our Work</h1>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
+
 <div>
     <button class="btn filterButton" type="button" onclick="filterItems('All')" id="All"> Show All </button>
     @foreach(var cat in Categories)
@@ -39,7 +37,7 @@
 
 </div>
 <div class="indexContainer">
-    @foreach (var item in Model.InventoryItem)
+    @foreach (var item in Model.InventoryItems)
     {
         <div class="indexItem @item.Category">
         <a asp-page="./Details" asp-route-id="@item.Id"><img src="~/images/@item.ImagePath" />

@@ -60,7 +60,7 @@
             <div class="form-group">
                 @if (Model != null && !String.IsNullOrEmpty(Model.InventoryItem.ImagePath))
                 {
-                    <label asp-for="ImgUpload">@Model.InventoryItem.ImagePath</label>
+                    <label asp-for="ImgUpload">Current Image: @Model.InventoryItem.ImagePath</label>
                     <input asp-for="ExistingPath" type="hidden" value="@Model.InventoryItem.ImagePath" /> // Keeps track of existing image to avoid overposting
                 }
                 <label asp-for="ImgUpload"></label>
@@ -70,9 +70,7 @@
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
-        <form method="post" enctype="multipart/form-data">
-
-        </form>
+       
     </div>
 </div>
 

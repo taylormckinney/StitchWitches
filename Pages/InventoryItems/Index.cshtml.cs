@@ -21,11 +21,11 @@ namespace StitchWitches.Pages.InventoryItems
             _context = context;
         }
 
-        public IList<InventoryItem> InventoryItem { get;set; } = default!;
+        public IList<InventoryItem> InventoryItems { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            InventoryItem = await _context.InventoryItem.ToListAsync();
+            InventoryItems = await _context.InventoryItem.ToListAsync();
         }
 
     }

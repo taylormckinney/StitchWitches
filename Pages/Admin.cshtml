@@ -1,0 +1,88 @@
+﻿@page
+@model StitchWitches.Pages.AdminModel
+
+@{
+    ViewData["Title"] = "Admin";
+}
+
+<h1>Admin</h1>
+
+<p>
+    <a asp-page="./InventoryItems/Create">Create New</a>
+</p>
+<form method="post">
+    <input type="submit" name="action" value="Save All" class="btn btn-primary" asp-page-handler="SaveAll" />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.InventoryItems[0].Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.InventoryItems[0].Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.InventoryItems[0].Color)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.InventoryItems[0].Quantity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.InventoryItems[0].Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.InventoryItems[0].CreatedBy)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.InventoryItems[0].Category)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.InventoryItems[0].ImagePath)
+                </th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.InventoryItems.Count; i++)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.InventoryItems[@i].Name)
+                        <input type="hidden" asp-for="InventoryItems[i].Id" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.InventoryItems[@i].Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.InventoryItems[@i].Color)
+                    </td>
+                    <td>
+                        <input asp-for="InventoryItems[@i].Quantity" />
+                    </td>
+                    <td>
+                        <input asp-for="InventoryItems[@i].Price" />
+                    </td>
+                    
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.InventoryItems[@i].CreatedBy)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.InventoryItems[@i].Category)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.InventoryItems[@i].ImagePath)
+                    </td>
+                    <td>
+                        <button type="submit" value="@i" name="SaveSingle" class="btn btn-default" >Save</button>
+                    </td>
+                    <td>
+                        <a asp-page="./InventoryItems/Edit" asp-route-id="@Model.InventoryItems[@i].Id">Edit</a> |
+                        <a asp-page="./InventoryItems/Details" asp-route-id="@Model.InventoryItems[@i].Id">Details</a> |
+                        <a asp-page="./InventoryItems/Delete" asp-route-id="@Model.InventoryItems[@i].Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>

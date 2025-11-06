@@ -37,7 +37,7 @@
                     @Html.DisplayNameFor(model => model.InventoryItems[0].Category)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.InventoryItems[0].ImagePath)
+                    @Html.DisplayNameFor(model => model.InventoryItems[0].SellCount)
                 </th>
                 <th></th>
                 <th></th>
@@ -71,7 +71,7 @@
                         @Html.DisplayFor(modelItem => Model.InventoryItems[@i].Category)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => Model.InventoryItems[@i].ImagePath)
+                        <input asp-for="InventoryItems[@i].SellCount" />
                     </td>
                     <td>
                         <button type="submit" value="@i" name="SaveSingle" class="btn btn-default" >Save</button>

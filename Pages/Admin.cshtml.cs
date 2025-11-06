@@ -42,7 +42,7 @@ namespace StitchWitches.Pages
                 if(await TryUpdateModelAsync<InventoryItem>(
                     dbItem,
                     $"InventoryItems[{i}]",
-                    x => x.Quantity, x => x.Price))
+                    x => x.Quantity, x => x.Price, x => x.SellCount))
                 {
                     _context.Attach(dbItem).State = EntityState.Modified;
                 }
@@ -58,7 +58,7 @@ namespace StitchWitches.Pages
             if (await TryUpdateModelAsync<InventoryItem>(
                 dbItem,
                 $"InventoryItems[{index}]",
-                x => x.Quantity, x => x.Price))
+                x => x.Quantity, x => x.Price, x => x.SellCount))
             {
                 _context.Attach(dbItem).State = EntityState.Modified;
             }

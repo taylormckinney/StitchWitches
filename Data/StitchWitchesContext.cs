@@ -15,5 +15,6 @@ namespace StitchWitches.Data
         }
 
         public DbSet<StitchWitches.Models.InventoryItem> InventoryItem { get; set; } = default!;
+        public DbSet<StitchWitches.Models.Sale> Sale { get; set; } = default!;
     }
 }

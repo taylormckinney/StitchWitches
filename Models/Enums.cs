@@ -21,4 +21,25 @@ namespace StitchWitches.Models
         Bags,
         Miscellaneous
     }
+
+
+    public enum MakerEnum
+    {
+        [Display(Name = "Made by Taylor")]
+        Taylor,
+        [Display(Name = "Made by Megan")]
+        Megan,
+        [Display(Name = "Made by Landis")]
+        Landis
+    }
+
+    public enum PaymentEnum
+    {
+        Cash,
+        Venmo,
+        [Display(Name = "Cash App")]
+        CashApp,
+        [Display(Name = "Apple Pay")]
+        ApplePay
+    }
 }

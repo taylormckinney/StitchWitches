@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StitchWitches.Data;
 
@@ -11,9 +12,11 @@ using StitchWitches.Data;
 namespace StitchWitches.Migrations
 {
     [DbContext(typeof(StitchWitchesContext))]
-    partial class StitchWitchesContextModelSnapshot : ModelSnapshot
+    [Migration("20251110192013_AddingSalesModel")]
+    partial class AddingSalesModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -59,7 +62,31 @@ namespace StitchWitches.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("InventoryItem", (string)null);
+                    b.ToTable("InventoryItem");
+                });
+
+            modelBuilder.Entity("StitchWitches.Models.OrderItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("InventoryItemId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SaleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SaleId");
+
+                    b.ToTable("OrderItem");
                 });
 
             modelBuilder.Entity("StitchWitches.Models.Sale", b =>
@@ -70,15 +97,11 @@ namespace StitchWitches.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.PrimitiveCollection<string>("ItemsSold")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Market")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PaymentMethod")
-                        .HasColumnType("int");
+                    b.Property<bool>("PaidByCard")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("SaleDate")
                         .HasColumnType("datetime2");
@@ -88,7 +111,19 @@ namespace StitchWitches.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sale", (string)null);
+                    b.ToTable("Sale");
+                });
+
+            modelBuilder.Entity("StitchWitches.Models.OrderItem", b =>
+                {
+                    b.HasOne("StitchWitches.Models.Sale", null)
+                        .WithMany("ItemsSold")
+                        .HasForeignKey("SaleId");
+                });
+
+            modelBuilder.Entity("StitchWitches.Models.Sale", b =>
+                {
+                    b.Navigation("ItemsSold");
                 });
 #pragma warning restore 612, 618
         }

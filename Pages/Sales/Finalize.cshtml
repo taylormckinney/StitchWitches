@@ -1,0 +1,55 @@
+﻿@page
+@model StitchWitches.Pages.Sales.FinalizeModel
+@using StitchWitches.Models
+
+@{
+    ViewData["Title"] = "Finalize";
+}
+
+<h1>Finalize</h1>
+
+<h4>Sale</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Sale.Id" />
+            <div class="form-group">
+                
+                <label asp-for="Sale.Market" class="control-label"></label>
+                <input asp-for="Sale.Market" class="form-control" />
+                <span asp-validation-for="Sale.Market" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                
+                <label asp-for="Sale.SaleDate" class="control-label"></label>
+                <input asp-for="Sale.SaleDate" class="form-control" />
+                <span asp-validation-for="Sale.SaleDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                
+                <label asp-for="Sale.Total" class="control-label"></label>
+                <input asp-for="Sale.Total" class="form-control" />
+                <span asp-validation-for="Sale.Total" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                
+                <label class="form-check-label">
+                    <select asp-for="Sale.PaymentMethod" asp-items="Html.GetEnumSelectList<PaymentEnum>()" ></select>
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

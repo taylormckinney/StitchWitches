@@ -29,7 +29,7 @@
 
 <div>
     <button class="btn filterButton" type="button" onclick="filterItems('All')" id="All"> Show All </button>
-    @foreach(var cat in Categories)
+    @foreach (var cat in Categories)
     {
         var display = GetCategoryDisplayName(cat);
         <button class="btn filterButton" type="button" onclick="filterItems('@cat')" id="@cat"> @display </button>
@@ -40,13 +40,16 @@
     @foreach (var item in Model.InventoryItems)
     {
         <div class="indexItem @item.Category">
-        <a asp-page="./Details" asp-route-id="@item.Id"><img src="~/images/@item.ImagePath" />
-            <h2>@Html.DisplayFor(modelitem => item.Name)</h2>
-        </a>
-        <p>@Html.DisplayFor(modelitem => item.Price) -- Current Stock: @Html.DisplayFor(modelitem => item.Quantity)
-        <br/> @Html.DisplayFor(modelitem => item.CreatedBy)
-        </p>
-        
+            <a asp-page="./Details" asp-route-id="@item.Id">
+                <img src="~/images/@item.ImagePath" />
+                <h2>@Html.DisplayFor(modelitem => item.Name)</h2>
+            </a>
+            <p>
+                @Html.DisplayFor(modelitem => item.Price) -- @Html.DisplayFor(modelitem => item.CreatedBy)
+                <br />
+                @Html.DisplayFor(modelitem => item.Description)
+            </p>
+
         </div>
     }
 </div>

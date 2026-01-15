@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StitchWitches.Data;
 
@@ -11,9 +12,11 @@ using StitchWitches.Data;
 namespace StitchWitches.Migrations
 {
     [DbContext(typeof(StitchWitchesContext))]
-    partial class StitchWitchesContextModelSnapshot : ModelSnapshot
+    [Migration("20260115204237_changingSalesProperties")]
+    partial class changingSalesProperties
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -59,7 +62,7 @@ namespace StitchWitches.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("InventoryItem", (string)null);
+                    b.ToTable("InventoryItem");
                 });
 
             modelBuilder.Entity("StitchWitches.Models.Sale", b =>
@@ -88,7 +91,7 @@ namespace StitchWitches.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sale", (string)null);
+                    b.ToTable("Sale");
                 });
 #pragma warning restore 612, 618
         }

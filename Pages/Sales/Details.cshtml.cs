@@ -20,7 +20,8 @@ namespace StitchWitches.Pages.Sales
         }
 
         public Sale Sale { get; set; } = default!;
-
+        [BindProperty]
+        public IList<InventoryItem> SoldItems { get; set; } = new List<InventoryItem>();
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -33,6 +34,17 @@ namespace StitchWitches.Pages.Sales
             if (sale is not null)
             {
                 Sale = sale;
+                if (Sale.ItemsSold is not null && Sale.ItemsSold.Count > 0)
+                {
+                    foreach(var itemId in Sale.ItemsSold)
+                    {
+                        var item = await _context.InventoryItem.FindAsync(itemId);
+                        if (item is not null)
+                        {
+                            SoldItems.Add(item);
+                        }
+                    }
+                }
 
                 return Page();
             }

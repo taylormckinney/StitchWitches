@@ -15,7 +15,11 @@
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Sale.Market" class="control-label"></label>
-                <input asp-for="Sale.Market" class="form-control" />
+                <input asp-for="Sale.Market" class="form-control" list="markets"/>
+                <datalist id="markets">
+                    <option value="Raleigh Flea Market"/>
+                    <option value="Maker's Market CLT - Burial"/>
+                </datalist>
                 <span asp-validation-for="Sale.Market" class="text-danger"></span>
             </div>
             

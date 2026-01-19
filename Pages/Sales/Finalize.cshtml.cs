@@ -30,7 +30,7 @@ namespace StitchWitches.Pages.Sales
                 return NotFound();
             }
 
-            var sale =  await _context.Sale.FirstOrDefaultAsync(m => m.Id == id);
+            var sale = await _context.Sale.FirstOrDefaultAsync(m => m.Id == id);
             if (sale == null)
             {
                 return NotFound();

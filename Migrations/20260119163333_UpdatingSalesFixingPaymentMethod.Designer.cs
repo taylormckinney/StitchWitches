@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StitchWitches.Data;
 
@@ -11,9 +12,11 @@ using StitchWitches.Data;
 namespace StitchWitches.Migrations
 {
     [DbContext(typeof(StitchWitchesContext))]
-    partial class StitchWitchesContextModelSnapshot : ModelSnapshot
+    [Migration("20260119163333_UpdatingSalesFixingPaymentMethod")]
+    partial class UpdatingSalesFixingPaymentMethod
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -75,9 +78,6 @@ namespace StitchWitches.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Market")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Notes")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("PaymentMethod")

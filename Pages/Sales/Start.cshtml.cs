@@ -30,8 +30,8 @@ namespace StitchWitches.Pages.Sales
 
         [BindProperty]
         public Sale Sale { get; set; } = default!;
-        [BindProperty]
-        public int[] SelectedItems { get; set; }
+       // [BindProperty]
+       // public int[] SelectedItems { get; set; }
 
 
         // For more information, see https://aka.ms/RazorPagesCRUD.
@@ -42,12 +42,13 @@ namespace StitchWitches.Pages.Sales
                 return Page();
             }
             Sale.SaleDate = DateTime.Now;
-            //foreach (var itemId in SelectedItems)
-            //{
-            //    Sale.ItemsSold.Add(itemId);
-
-            //}
-
+            decimal subtotal = 0.0m;
+            foreach (var itemId in Sale.ItemsSold)
+            {
+                var item = await _context.InventoryItem.FindAsync(itemId);
+                subtotal += item.Price;
+            }
+            Sale.Total = subtotal;
             _context.Sale.Add(Sale);
             await _context.SaveChangesAsync();
 

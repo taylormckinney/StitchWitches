@@ -18,7 +18,8 @@ namespace StitchWitches.Models
         [Required]
         public IList<int> ItemsSold { get; set; } = [];
         [Display(Name = "Payment Method")]
-        public PaymentEnum PaymentMethod { get; set; }
+        public PaymentEnum? PaymentMethod { get; set; }
+        public string? Notes { get; set; }
     }
 
 }

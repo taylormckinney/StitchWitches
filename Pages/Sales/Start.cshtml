@@ -18,11 +18,17 @@
                 <input asp-for="Sale.Market" class="form-control" />
                 <span asp-validation-for="Sale.Market" class="text-danger"></span>
             </div>
-           
+            
             
             <div class="form-group form-check">
                 <label asp-for="Sale.ItemsSold" class="control-label"></label>
                 <select asp-for="Sale.ItemsSold" asp-items="Model.ItemsInStock" class="form-control" multiple></select>
+                <span asp-validation-for="Sale.ItemsSold" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sale.Notes" class="control-label"></label>
+                <input asp-for="Sale.Notes" class="form-control" />
+                <span asp-validation-for="Sale.Notes" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Finalize Order" class="btn btn-primary" />

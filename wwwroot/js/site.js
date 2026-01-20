@@ -31,6 +31,9 @@ function filterItems(category) {
         }
     }); */
 
-} //ends func
+} //ends filterItems function
 
 
+function EditSaleItems() {
+
+}

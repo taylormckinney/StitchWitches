@@ -1,50 +1,71 @@
 ﻿@page
 @model StitchWitches.Pages.Sales.StartModel
 
-        @{
-        ViewData["Title"] = "Start";
-        }
-        
-        <h1>Start</h1>
-        
-    <h4>Sale</h4>
-    <hr />
-    <div class="row">
-    <div class="col-md-4">
-    <form method="post">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Sale.Market" class="control-label"></label>
-                <input asp-for="Sale.Market" class="form-control" list="markets"/>
-                <datalist id="markets">
-                    <option value="Raleigh Flea Market"/>
-                    <option value="Maker's Market CLT - Burial"/>
-                </datalist>
-                <span asp-validation-for="Sale.Market" class="text-danger"></span>
+@{
+    ViewData["Title"] = "Start";
+}
+
+<h1>Start a Sale / Select Items</h1>
+
+<h4>Sale</h4>
+<hr />
+
+
+<form method="post">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md">
+                <div class="form-group form-check">
+                   <h4>Items Currently in Stock:</h4>
+                    @foreach(var category in Model.CategoryLists)
+                    {
+                        <h5>@category[0].Category</h5>
+                        @for (var i = 0; i < category.Count(); i++)
+                        {
+                            <input name="Selected" type="checkbox" value="@category[@i].Id" />
+                            <label>@category[@i].Name ( @category[@i].Price )</label>
+                            <br />
+                        }
+                    }
+                </div>
             </div>
-            
-            
-            <div class="form-group form-check">
-                <label asp-for="Sale.ItemsSold" class="control-label"></label>
-                <select asp-for="Sale.ItemsSold" asp-items="Model.ItemsInStock" class="form-control" multiple></select>
-                <span asp-validation-for="Sale.ItemsSold" class="text-danger"></span>
+            <div class="col-md">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Sale.Market" class="control-label"></label>
+                    <input asp-for="Sale.Market" class="form-control" list="markets" />
+                    <datalist id="markets">
+                        <option value="Raleigh Flea Market" />
+                        <option value="Maker's Market CLT - Burial" />
+                    </datalist>
+                    <span asp-validation-for="Sale.Market" class="text-danger"></span>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label asp-for="Sale.Notes" class="control-label"></label>
+                    <input asp-for="Sale.Notes" class="form-control" />
+                    <span asp-validation-for="Sale.Notes" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Sale.Notes" class="control-label"></label>
-                <input asp-for="Sale.Notes" class="form-control" />
-                <span asp-validation-for="Sale.Notes" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Finalize Order" class="btn btn-primary" />
-            </div>
-        </form>
+
+        </div>
     </div>
-</div>
+    <div class="form-group">
+        <input type="submit" value="Finalize Order" class="btn btn-primary" />
+    </div>
+</form>
+
+
 
 <div>
     <a asp-page="Index">Back to List</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

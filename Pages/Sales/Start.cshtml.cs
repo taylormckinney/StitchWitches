@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Diagnostics;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 using StitchWitches.Data;
 using StitchWitches.Models;
 
@@ -20,18 +21,52 @@ namespace StitchWitches.Pages.Sales
         {
             _context = context;
         }
-        public SelectList ItemsInStock { get; set; } = default!;
+        
+        [BindProperty]
+        public Sale Sale { get; set; } = default!;
+        [BindProperty]
+        public List<int> Selected { get; set; } = new List<int>();
+        [BindProperty]
+        public IList<IList<InventoryItem>> CategoryLists { get; set; } = new List<IList<InventoryItem>>();
+        public IList<InventoryItem> CategoryStock { get; set; } = default!;
+
 
         public async Task OnGetAsync()
         {
-            var inStock = await _context.InventoryItem.Where(item => item.Quantity > 0).ToListAsync();
-            ItemsInStock = new SelectList(inStock, nameof(InventoryItem.Id),nameof(InventoryItem.Name), null, nameof(InventoryItem.Category));
+            var categories = Enum.GetValues<CategoryEnum>().ToList();
+            foreach (CategoryEnum cat in categories)
+            {
+                CategoryStock = await _context.InventoryItem.Where(item => item.Quantity > 0 && item.Category == cat).ToListAsync();
+
+                if (CategoryStock is not null && CategoryStock.Count > 0)
+                {
+                    CategoryLists.Add(CategoryStock);
+                }
+
+            }
+
         }
 
-        [BindProperty]
-        public Sale Sale { get; set; } = default!;
-       // [BindProperty]
-       // public int[] SelectedItems { get; set; }
+        public async Task<IActionResult> OnGetExistingAsync(int? id)
+        {
+            await OnGetAsync();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var sale = await _context.Sale.FirstOrDefaultAsync(m => m.Id == id);
+
+            if (sale == null)
+            {
+                return NotFound();
+            }
+            Sale = sale;
+            Selected = [.. Sale.ItemsSold];
+            return Page();
+        }
+
+
 
 
         // For more information, see https://aka.ms/RazorPagesCRUD.
@@ -41,6 +76,12 @@ namespace StitchWitches.Pages.Sales
             {
                 return Page();
             }
+            //adding selected items to sale
+            foreach (var itemId in Selected)
+            {
+                Sale.ItemsSold.Add(itemId);
+            }
+            //date and subtotal calculated: 
             Sale.SaleDate = DateTime.Now;
             decimal subtotal = 0.0m;
             foreach (var itemId in Sale.ItemsSold)
@@ -49,10 +90,13 @@ namespace StitchWitches.Pages.Sales
                 subtotal += item.Price;
             }
             Sale.Total = subtotal;
+
+
+
             _context.Sale.Add(Sale);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Finalize", new {id=Sale.Id});
+            return RedirectToPage("./Finalize", new { id = Sale.Id });
         }
     }
 }

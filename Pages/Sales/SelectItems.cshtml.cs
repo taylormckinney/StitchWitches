@@ -13,11 +13,11 @@ using StitchWitches.Models;
 
 namespace StitchWitches.Pages.Sales
 {
-    public class StartModel : PageModel
+    public class SelectItemsModel : PageModel
     {
         private readonly StitchWitches.Data.StitchWitchesContext _context;
 
-        public StartModel(StitchWitches.Data.StitchWitchesContext context)
+        public SelectItemsModel(StitchWitches.Data.StitchWitchesContext context)
         {
             _context = context;
         }
@@ -46,7 +46,8 @@ namespace StitchWitches.Pages.Sales
             }
 
         }
-
+        //not actually hitting here... either need to fix route on finalize page 
+        //or rethink.. only one OnGetAsync, if id present, load existing sale??? create/edit in one? 
         public async Task<IActionResult> OnGetExistingAsync(int? id)
         {
             await OnGetAsync();
@@ -92,9 +93,22 @@ namespace StitchWitches.Pages.Sales
             Sale.Total = subtotal;
 
 
+            if(Sale.Id == 0)
+            {
+                _context.Sale.Add(Sale);
 
-            _context.Sale.Add(Sale);
+                
+            }
+            else
+            {
+                _context.Attach(Sale).State = EntityState.Modified;
+            }
+                
             await _context.SaveChangesAsync();
+
+
+
+
 
             return RedirectToPage("./Finalize", new { id = Sale.Id });
         }

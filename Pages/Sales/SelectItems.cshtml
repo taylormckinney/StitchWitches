@@ -1,8 +1,14 @@
 ﻿@page
-@model StitchWitches.Pages.Sales.StartModel
+@model StitchWitches.Pages.Sales.SelectItemsModel
 
 @{
     ViewData["Title"] = "Start";
+    var idParam = Request.Query["Id"];
+    int existingID = -1;
+    if (int.TryParse(idParam, out int result))
+    {
+        existingID = result;
+    }
 }
 
 <h1>Start a Sale / Select Items</h1>
@@ -12,18 +18,29 @@
 
 
 <form method="post">
+    @if (existingID > -1)
+    {
+        <input type="hidden" asp-for="Sale.Id" />
+    }
     <div class="container">
         <div class="row">
 
             <div class="col-md">
                 <div class="form-group form-check">
-                   <h4>Items Currently in Stock:</h4>
-                    @foreach(var category in Model.CategoryLists)
+                    <h4>Items Currently in Stock:</h4>
+                    @foreach (var category in Model.CategoryLists)
                     {
                         <h5>@category[0].Category</h5>
                         @for (var i = 0; i < category.Count(); i++)
                         {
-                            <input name="Selected" type="checkbox" value="@category[@i].Id" />
+                            if (Model.Selected.Contains(category[i].Id))
+                            {
+                                <input name="Selected" type="checkbox" value="@category[@i].Id" checked />
+                            }
+                            else
+                            {
+                                <input name="Selected" type="checkbox" value="@category[@i].Id" />
+                            }
                             <label>@category[@i].Name ( @category[@i].Price )</label>
                             <br />
                         }
@@ -56,6 +73,7 @@
     <div class="form-group">
         <input type="submit" value="Finalize Order" class="btn btn-primary" />
     </div>
+
 </form>
 
 

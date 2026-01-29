@@ -69,7 +69,7 @@ namespace StitchWitches.Pages.Sales
             if (await TryUpdateModelAsync<Sale>(
                 dbItem,
                 $"Sale",
-                x => x.SaleDate, x => x.Total, x => x.PaymentMethod,x => x.Notes))
+                x => x.SaleDate, x => x.Total, x => x.PaymentMethod,x => x.Notes, x=>x.Market))
             {
                 _context.Attach(dbItem).State = EntityState.Modified;
             }

@@ -33,7 +33,7 @@ namespace StitchWitches.Pages.Sales
                 return NotFound();
             }
 
-            var sale = await _context.Sale.FirstOrDefaultAsync(m => m.Id == id);
+            var sale = await _context.Sale.FirstOrDefaultAsync(x => x.Id == id);
 
             if (sale == null)
             {
@@ -73,7 +73,23 @@ namespace StitchWitches.Pages.Sales
             {
                 _context.Attach(dbItem).State = EntityState.Modified;
             }
+            foreach(var id in dbItem.ItemsSold)
+            {
+                var invItem = await _context.InventoryItem.FindAsync(id);
+                if (invItem is not null)
+                {
+                    invItem.Quantity -= 1;
+                    invItem.SellCount += 1;
 
+                    if(await TryUpdateModelAsync<InventoryItem>(
+                        invItem,
+                        $"",
+                        x => x.Quantity, x=>x.SellCount))
+                    {
+                        _context.Attach(invItem).State = EntityState.Modified;
+                    }
+                }
+            }
 
             try
             {

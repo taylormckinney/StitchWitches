@@ -9,58 +9,62 @@
 }
 
 <h1>Details</h1>
-<img src="~/images/@fileName" class="img-reactive pull-right" width="33%">
-<div class="pull-left">
-    <h4>@Html.DisplayFor(model => model.InventoryItem.Name)</h4>
+<div class="container">
+    <div class="row">
+        <img src="~/images/@fileName" class="img-reactive col-4" width="33%">
+        <div class="col" width="50%">
+            <h4>@Html.DisplayFor(model => model.InventoryItem.Name)</h4>
 
-    <dl class="row">
+            <dl class="row">
 
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.InventoryItem.Description)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.InventoryItem.Description)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.InventoryItem.Quantity)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.InventoryItem.Quantity)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.InventoryItem.Price)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.InventoryItem.Price)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.InventoryItem.CreatedBy)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.InventoryItem.CreatedBy)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.InventoryItem.Color)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.InventoryItem.Color)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.InventoryItem.Category)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.InventoryItem.Category)
-        </dd>
-        @if (User?.Identity?.IsAuthenticated == true)
-        {
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.InventoryItem.SellCount)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.InventoryItem.SellCount)
-            </dd>
-        }
-    </dl>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.InventoryItem.Description)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.InventoryItem.Description)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.InventoryItem.Quantity)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.InventoryItem.Quantity)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.InventoryItem.Price)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.InventoryItem.Price)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.InventoryItem.CreatedBy)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.InventoryItem.CreatedBy)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.InventoryItem.Color)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.InventoryItem.Color)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.InventoryItem.Category)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.InventoryItem.Category)
+                </dd>
+                @if (User?.Identity?.IsAuthenticated == true)
+                {
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.InventoryItem.SellCount)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.InventoryItem.SellCount)
+                    </dd>
+                }
+            </dl>
+        </div>
+    </div>
 </div>
 <div>
     @if (User?.Identity?.IsAuthenticated == true)

@@ -19,21 +19,36 @@ function filterItems(category) {
             item.style.display = "none";
         }
     }
-    /*
-    //menu button styling on click: 
-    var btns = document.getElementsByClassName("filterButton");
-    Array.from(btns).foreach((btn) => {
-        if (btn.id == category) {
-            btn.classList.add('selected');
-        }
-        else {
-            btn.classList.remove('selected');
-        }
-    }); */
+
+    activeButtonStyling(category);
 
 } //ends filterItems function
 
 
-function EditSaleItems() {
+function checkStock() {
+    var items = document.getElementsByClassName("indexItem");
+    for (var item of items) {
+        if (item.classList.contains("InStock")) {
+            item.style.display = "block";
+        }
+        else {
+            item.style.display = "none";
+        }
 
+        activeButtonStyling("InStock");
+    }
+}
+
+function activeButtonStyling(selected) {
+    var btns = document.getElementsByClassName("filterButton");
+    for (var btn of btns) {
+
+        if (btn.id == selected) {
+            btn.classList.add('active');
+        }
+        else {
+            btn.classList.remove('active');
+        }
+
+    }
 }

@@ -9,6 +9,7 @@ namespace StitchWitches.Models
         public string? Name { get; set; }
         public string? Description { get; set; }
         public string? Color { get; set; }
+        [Display(Name="In Stock")]
         public int Quantity { get; set; }
         [Column(TypeName = "decimal(18, 2)")]
         [DataType(DataType.Currency)]

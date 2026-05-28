@@ -1,3 +1,22 @@
+@font-face {
+    font-family: 'Mathreal';
+    src: url('/fonts/Mathreal.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Hanged Letters';
+    src: url('/fonts/Hanged Letters.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Hearty Sacred';
+    src: url('/fonts/Hearty Sacred.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Hello Honey';
+    src: url('/fonts/hello honey.otf') format('opentype');
+}
+
 html {
     font-size: 14px;
 }
@@ -16,10 +35,17 @@ html {
     position: relative;
     min-height: 100%;
 }
+title {
+    font-family: 'Hello Honey', cursive;
+}
+
 
 body {
     margin-bottom: 60px;
+    font-family: Arial, Helvetica, sans-serif;
 }
+
+
 
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
     color: var(--bs-secondary-color);
@@ -32,9 +58,22 @@ body {
 
 a {
     color: #2d6732;
+    text-decoration: none;
 }
 
+h1 {
+    font-family: 'Mathreal', serif;
+    color: #4b324d;
+    text-shadow: #000 1px 1px 3px;
+}
 
+h2 {
+    font-family: 'Hanged Letters', sans-serif;
+}
+
+h3 {
+    font-family: 'Hearty Sacred', serif;
+}
 
 /* Main Index page (site home)*/
 .scrollContainer {
@@ -43,6 +82,7 @@ a {
     overflow-y: hidden;
     white-space: nowrap;
     padding: 10px;
+    margin: 20px auto;
     display: flex;
     align-items: center;
     flex-flow: row nowrap;
@@ -64,7 +104,15 @@ a {
         background-color: #bfc1bf;
         flex: none;
     }
-
+.blurb {
+    width: 70%;
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #4b324d8A;
+    text-align: center;
+    box-shadow: #
+}
 .left {
     width: 50%;
     display: inline-block;
@@ -72,6 +120,7 @@ a {
     background-color: #eee;
     margin: 50px auto;
     padding: 20px;
+    height: 300px;
 }
 
 .right {
@@ -81,6 +130,21 @@ a {
     background-color: #ddd;
     margin: 50px auto;
     padding: 20px;
+    height:300px;
+}
+
+.event {
+    background-color: #6e3a7aAA;
+    box-shadow: #000 3px 3px 5px 3px;
+    padding: 10px;
+    margin: 10px auto;
+    border-radius: 10px;
+    text-align: center;
+}
+.eventDetails {
+    background-color: #eee;
+    border-radius: 10px;
+    padding: 10px;
 }
 
 /* InventoryItem/Index page */
@@ -96,12 +160,16 @@ a {
     flex: 1 0 auto;
     max-width: 300px;
     margin: auto;
-    border: dashed 1px #29470c;
+    border-radius: 10px;
+    box-shadow: #34482E 1px 1px 3px;
     padding: 10px;
     background-color: #eee;
     align-items: stretch;
 }
 
+    .indexItem a {
+        text-shadow: #34482E 1px 1px 1px;
+    }
 
 
 .filterBtnContainer {

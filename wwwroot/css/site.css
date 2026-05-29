@@ -65,14 +65,23 @@ h1 {
     font-family: 'Mathreal', serif;
     color: #4b324d;
     text-shadow: #000 1px 1px 3px;
+    text-align: center;
 }
 
 h2 {
     font-family: 'Hanged Letters', sans-serif;
+    text-shadow: #000 1px 1px 2px;
+    text-align: center;
 }
 
 h3 {
     font-family: 'Hearty Sacred', serif;
+    text-shadow: #29470c 0px 0px 2px;
+    text-align: center;
+}
+
+strong {
+    text-shadow: #4b324d 0px 0px 2px;
 }
 
 /* Main Index page (site home)*/
@@ -131,6 +140,15 @@ h3 {
     margin: 50px auto;
     padding: 20px;
     height:300px;
+}
+
+.contact {
+    height: 500px;
+    border: 5px solid #4b324d;
+    padding-top: 0px !important;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 50px auto;
 }
 
 .event {
